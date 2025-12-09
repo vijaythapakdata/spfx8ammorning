@@ -1,0 +1,41 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "training-client-side-solution",
+    "id": "3d303cc6-54ef-4e4a-abc9-e0ea2aa0ca88",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.20.0"
+    },
+    
+    "metadata": {
+      "shortDescription": {
+        "default": "training description"
+      },
+      "longDescription": {
+        "default": "training description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "training Feature",
+        "description": "The feature that activates elements of the training solution.",
+        "id": "2a7d215b-edf1-473d-acf8-0a0d927ea0d2",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/training.sppkg"
+  }
+}
