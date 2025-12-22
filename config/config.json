@@ -9,10 +9,28 @@
           "manifest": "./src/webparts/firstwebpart/FirstwebpartWebPart.manifest.json"
         }
       ]
+    },
+    "property-pane-webpart-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/propertyPaneWebpart/PropertyPaneWebpartWebPart.js",
+          "manifest": "./src/webparts/propertyPaneWebpart/PropertyPaneWebpartWebPart.manifest.json"
+        }
+      ]
+    },
+    "spfx-form-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/spfxForm/SpfxFormWebPart.js",
+          "manifest": "./src/webparts/spfxForm/SpfxFormWebPart.manifest.json"
+        }
+      ]
     }
   },
   "externals": {},
   "localizedResources": {
-    "FirstwebpartWebPartStrings": "lib/webparts/firstwebpart/loc/{locale}.js"
+    "FirstwebpartWebPartStrings": "lib/webparts/firstwebpart/loc/{locale}.js",
+    "PropertyPaneWebpartWebPartStrings": "lib/webparts/propertyPaneWebpart/loc/{locale}.js",
+    "SpfxFormWebPartStrings": "lib/webparts/spfxForm/loc/{locale}.js"
   }
 }
