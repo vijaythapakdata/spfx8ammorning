@@ -5,4 +5,8 @@ export interface ISpfxFormState{
     Score:number;
     FullAddress:string;
     Email:string;
+    Admin:any;
+    AdminId:any;
+    Manager:any[];
+    ManagerId:any[];
 }
