@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/spfx/client-side-web-part-manifest.schema.json",
-  "id": "e51b62e3-1443-4278-afa9-192fd8f1c5e4",
-  "alias": "SpfxFormWebPart",
+  "id": "f4593cf9-f052-4f7c-b1d8-05b2cb7c2200",
+  "alias": "FormikValidationFormWebPart",
   "componentType": "WebPart",
 
   // The "*" signifies that the version should be taken from the package.json
@@ -18,12 +18,11 @@
   "preconfiguredEntries": [{
     "groupId": "5c03119e-3074-46fd-976b-c60198311f70", // Advanced
     "group": { "default": "Advanced" },
-    "title": { "default": "SpfxForm" },
-    "description": { "default": "SpfxForm description" },
+    "title": { "default": "FormikValidationForm" },
+    "description": { "default": "FormikValidationForm description" },
     "officeFabricIconFontName": "Page",
     "properties": {
-      "description": "SpfxForm",
-      "ListName":"First List"
+      "description": "FormikValidationForm"
     }
   }]
 }

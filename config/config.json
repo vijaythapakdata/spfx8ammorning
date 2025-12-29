@@ -25,6 +25,14 @@
           "manifest": "./src/webparts/spfxForm/SpfxFormWebPart.manifest.json"
         }
       ]
+    },
+    "formik-validation-form-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/formikValidationForm/FormikValidationFormWebPart.js",
+          "manifest": "./src/webparts/formikValidationForm/FormikValidationFormWebPart.manifest.json"
+        }
+      ]
     }
   },
   "externals": {},
@@ -32,6 +40,7 @@
     "FirstwebpartWebPartStrings": "lib/webparts/firstwebpart/loc/{locale}.js",
     "PropertyPaneWebpartWebPartStrings": "lib/webparts/propertyPaneWebpart/loc/{locale}.js",
     "SpfxFormWebPartStrings": "lib/webparts/spfxForm/loc/{locale}.js",
-    "ControlStrings": "node_modules/@pnp/spfx-controls-react/lib/loc/{locale}.js"
+    "ControlStrings": "node_modules/@pnp/spfx-controls-react/lib/loc/{locale}.js",
+    "FormikValidationFormWebPartStrings": "lib/webparts/formikValidationForm/loc/{locale}.js"
   }
 }

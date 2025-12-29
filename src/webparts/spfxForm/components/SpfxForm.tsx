@@ -5,7 +5,7 @@ import type { ISpfxFormProps } from './ISpfxFormProps';
 import {sp,Web} from "@pnp/sp/presets/all";
 import { ISpfxFormState } from './ISpfxFormsState';
 import { Dialog } from '@microsoft/sp-dialog';
-import { PrimaryButton, Slider, TextField } from '@fluentui/react';
+import { ChoiceGroup, Dropdown, IDropdownOption, PrimaryButton, Slider, TextField } from '@fluentui/react';
 import {PeoplePicker,PrincipalType} from "@pnp/spfx-controls-react/lib/PeoplePicker";
 const  SpfxForm:React.FC<ISpfxFormProps>=(props)=>{
   const[formdata,setFormData]=React.useState<ISpfxFormState>({
@@ -18,7 +18,11 @@ const  SpfxForm:React.FC<ISpfxFormProps>=(props)=>{
     Admin:"",
     AdminId:"",
     Manager:[],
-    ManagerId:[]
+    ManagerId:[],
+    Department:"",
+    Skills:[],
+    City:"",
+    Gender:""
   });
   React.useEffect(()=>{
     sp.setup({
@@ -38,7 +42,11 @@ await web.lists.getByTitle(props.ListName).items.add({
   Address:formdata.FullAddress,
   Score:formdata.Score,
   AdminId:formdata.AdminId,
-  ManagerId:{results:formdata.ManagerId}
+  ManagerId:{results:formdata.ManagerId},
+  Department:formdata.Department,
+  Gender:formdata.Gender,
+  CityId:formdata.City,
+  Skills:{results:formdata.Skills}
 });
 Dialog.alert("Data created Successffullly");
 setFormData({
@@ -51,7 +59,11 @@ setFormData({
      Admin:"",
     AdminId:"",
     Manager:[],
-    ManagerId:[]
+    ManagerId:[],
+     Department:"",
+    Skills:[],
+    City:"",
+    Gender:""
 });
     }
     catch(err){
@@ -78,7 +90,13 @@ const managersName=items.map((i:any)=>i.text);
 const managersId=items.map((i:any)=>i.id);
 setFormData(prev=>({...prev,Manager:managersName,ManagerId:managersId}))
 
+ 
 }
+//Skills change
+  const onSkillsChange=(event:React.FormEvent<HTMLInputElement>,options:IDropdownOption):void=>{
+    const selectedkey=options.selected?[...formdata.Skills,options.key as string]:formdata.Skills.filter((key)=>key!==options.key);
+    setFormData(prev=>({...prev,Skills:selectedkey}));
+  }
   return(
     <>
     <TextField
@@ -142,7 +160,38 @@ setFormData(prev=>({...prev,Manager:managersName,ManagerId:managersId}))
     ensureUser={true}
     defaultSelectedUsers={formdata.Manager}
     webAbsoluteUrl={props.siteurl}
-    
+    // 
+    />
+    {/* Dropdown */}
+    <Dropdown
+    label='Department'
+    placeholder='--select--'
+    options={props.departmentOptions}
+    selectedKey={formdata.Department}
+    onChange={(_,options)=>handleChange("Department",options?.key as string)}
+    />
+     <ChoiceGroup
+    label='Gender'
+    options={props.genderOptions}
+    selectedKey={formdata.Gender}
+    onChange={(_,options)=>handleChange("Gender",options?.key as string)}
+    />
+     <Dropdown
+    label='City'
+    placeholder='--select--'
+    options={props.cityOptions}
+    selectedKey={formdata.City}
+    onChange={(_,options)=>handleChange("City",options?.key as string)}
+    />
+    <Dropdown
+    label='Skills'
+    placeholder='--select--'
+    options={props.skillsOptions}
+    // selectedKey={formdata.City}
+    defaultSelectedKeys={formdata.Skills}
+    // onChange={(_,options)=>handleChange("City",options?.key as string)}
+    onChange={onSkillsChange}
+    multiSelect
     />
     <br/>
     <PrimaryButton
@@ -152,5 +201,6 @@ setFormData(prev=>({...prev,Manager:managersName,ManagerId:managersId}))
     />
     </>
   )
+ 
 }
 export default  SpfxForm;

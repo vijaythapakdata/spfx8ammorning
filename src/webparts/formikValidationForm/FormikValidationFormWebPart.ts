@@ -8,36 +8,31 @@ import {
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import { IReadonlyTheme } from '@microsoft/sp-component-base';
 
-import * as strings from 'SpfxFormWebPartStrings';
-import SpfxForm from './components/SpfxForm';
-import { ISpfxFormProps } from './components/ISpfxFormProps';
+import * as strings from 'FormikValidationFormWebPartStrings';
+import FormikValidationForm from './components/FormikValidationForm';
+import { IFormikValidationFormProps } from './components/IFormikValidationFormProps';
 
-export interface ISpfxFormWebPartProps {
+export interface IFormikValidationFormWebPartProps {
   description: string;
-  ListName:string;
 }
 
-export default class SpfxFormWebPart extends BaseClientSideWebPart<ISpfxFormWebPartProps> {
+export default class FormikValidationFormWebPart extends BaseClientSideWebPart<IFormikValidationFormWebPartProps> {
 
   private _isDarkTheme: boolean = false;
   private _environmentMessage: string = '';
 
-  public async render(): Promise<void> {
-    const element: React.ReactElement<ISpfxFormProps> = React.createElement(
-      SpfxForm,
+  public render(): void {
+    const element: React.ReactElement<IFormikValidationFormProps> = React.createElement(
+      FormikValidationForm,
       {
         description: this.properties.description,
         isDarkTheme: this._isDarkTheme,
         environmentMessage: this._environmentMessage,
         hasTeamsContext: !!this.context.sdks.microsoftTeams,
         userDisplayName: this.context.pageContext.user.displayName,
-        siteurl:this.context.pageContext.web.absoluteUrl,
         context:this.context,
-        ListName:this.properties.ListName,
-        departmentOptions:await this.getChoiceFields(this.context.pageContext.web.absoluteUrl,this.properties.ListName,"Department"),
-        genderOptions:await this.getChoiceFields(this.context.pageContext.web.absoluteUrl,this.properties.ListName,"Gender"),
-        skillsOptions:await this.getChoiceFields(this.context.pageContext.web.absoluteUrl,this.properties.ListName,"Skills"),
-        cityOptions:await this.getLookupValues()
+        siteurl:this.context.pageContext.web.absoluteUrl,
+        ListName:"Formik List"
       }
     );
 
@@ -125,53 +120,5 @@ export default class SpfxFormWebPart extends BaseClientSideWebPart<ISpfxFormWebP
         }
       ]
     };
-  }
-  //get choice values
-  private async getChoiceFields(siteurl:string,ListName:string,fieldvalue:string):Promise<any>{
-    try{
-const response=await fetch(`${siteurl}/_api/web/lists/getbytitle('${ListName}')/fields?$filter=EntityPropertyName eq '${fieldvalue}'`,{
-  method:'GET',
-  headers:{
-    'Accept':'application/json;odata=nometadata'
-  }
-});
-if(!response.ok){
-  throw new Error(`Error while fetching the choice fields : ${response.status}`);
-};
-const data=await response.json();
-const choices=data.value[0].Choices;
-return choices.map((choice:any)=>({
-  key:choice,
-  text:choice
-}));
-    }
-    catch(err){
-console.error(err);
-return [];
-    }
-  }
-
-  //get lookup
-  private async getLookupValues():Promise<any[]>{
-    try{
-const response=await fetch(`${this.context.pageContext.web.absoluteUrl}/_api/web/lists/getbytitle('Cities')/items?$select=Title,ID`,{
-  method:'GET',
-  headers:{
-    'Accept':'application/json;odata=nometadata'
-  }
-});
-if(!response.ok){
-  throw new Error(`Error while fetching the lookup fields : ${response.status}`);
-};
-const data=await response.json();
-return data.value.map((city:{ID:string,Title:string})=>({
-  key:city.ID,
-  text:city.Title
-}));
-    }
-    catch(err){
-console.error(err);
-return [];
-    }
   }
 }
