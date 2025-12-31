@@ -33,6 +33,14 @@
           "manifest": "./src/webparts/formikValidationForm/FormikValidationFormWebPart.manifest.json"
         }
       ]
+    },
+    "pagination-web-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/paginationWeb/PaginationWebWebPart.js",
+          "manifest": "./src/webparts/paginationWeb/PaginationWebWebPart.manifest.json"
+        }
+      ]
     }
   },
   "externals": {},
@@ -41,6 +49,7 @@
     "PropertyPaneWebpartWebPartStrings": "lib/webparts/propertyPaneWebpart/loc/{locale}.js",
     "SpfxFormWebPartStrings": "lib/webparts/spfxForm/loc/{locale}.js",
     "ControlStrings": "node_modules/@pnp/spfx-controls-react/lib/loc/{locale}.js",
-    "FormikValidationFormWebPartStrings": "lib/webparts/formikValidationForm/loc/{locale}.js"
+    "FormikValidationFormWebPartStrings": "lib/webparts/formikValidationForm/loc/{locale}.js",
+    "PaginationWebWebPartStrings": "lib/webparts/paginationWeb/loc/{locale}.js"
   }
 }
