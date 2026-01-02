@@ -5,7 +5,7 @@ export default class PaginationService{
     public static async getPaginationItems(ListName:string):Promise<IPaginationState[]>{
         try{
 const data=await sp.web.lists.getByTitle(ListName).items.select("Id","Title","EmailAddress","Age","Admin/Title","City/Title")
-.expand("Admin","Title").get();
+.expand("Admin","City").get();
 return data.map(e=>({
    key:e.Id,
    Title:e.Title,
