@@ -41,6 +41,14 @@
           "manifest": "./src/webparts/paginationWeb/PaginationWebWebPart.manifest.json"
         }
       ]
+    },
+    "large-list-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/largeList/LargeListWebPart.js",
+          "manifest": "./src/webparts/largeList/LargeListWebPart.manifest.json"
+        }
+      ]
     }
   },
   "externals": {},
@@ -50,6 +58,7 @@
     "SpfxFormWebPartStrings": "lib/webparts/spfxForm/loc/{locale}.js",
     "ControlStrings": "node_modules/@pnp/spfx-controls-react/lib/loc/{locale}.js",
     "FormikValidationFormWebPartStrings": "lib/webparts/formikValidationForm/loc/{locale}.js",
-    "PaginationWebWebPartStrings": "lib/webparts/paginationWeb/loc/{locale}.js"
+    "PaginationWebWebPartStrings": "lib/webparts/paginationWeb/loc/{locale}.js",
+    "LargeListWebPartStrings": "lib/webparts/largeList/loc/{locale}.js"
   }
 }
